@@ -1,10 +1,13 @@
 {
   "dependencies": {
+    "@google-cloud/pubsub": "^4.9.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "firebase": "^11.0.2",
     "firebase-admin": "^13.0.1",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "pubsub": "^3.2.1",
+    "redis": "^4.7.0"
   },
   "name": "test-build",
   "version": "1.0.0",
