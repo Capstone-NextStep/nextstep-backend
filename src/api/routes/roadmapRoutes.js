@@ -7,5 +7,6 @@ const router = express.Router();
 // Protected routes - require authentication
 router.get('/', verifyFirebaseToken, roadmapController.getAllRoadmaps);
 router.get('/:id', verifyFirebaseToken, roadmapController.getRoadmapById);
+router.post('/', verifyFirebaseToken, roadmapController.postRoadmap);
 
 module.exports = router;
