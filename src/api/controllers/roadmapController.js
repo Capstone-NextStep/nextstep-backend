@@ -24,18 +24,27 @@ exports.postRoadmap = async (req, res) => {
 };
 
 exports.getRoadmapById = async (req, res) => {
-	try {
-		const roadmapId = req.params.id;
-		const roadmapDoc = await db.collection('roadmaps').doc(roadmapId).get();
+    try {
+        const roadmapId = String(req.params.id);         
+        const querySnapshot = await db.collection('roadmaps').where('id', '==', roadmapId).get();
 
-		if (!roadmapDoc.exists) {
-			return res.status(404).json({ error: 'Roadmap Not Found'});
-		}
-		res.status(200).json({ roadmap: roadmapDoc.data() });
-	} catch (error) {
-		res.status(500).json({ error: error.message });
-	}
-}
+        if (querySnapshot.empty) {
+            console.log(`No roadmap found with ID: ${roadmapId}`);
+            return res.status(404).json({ error: 'Roadmap Not Found', id: roadmapId });
+        }
+
+        const doc = querySnapshot.docgets[0];
+        const roadmap = doc.data();
+
+        res.status(200).json({
+            roadmap: roadmap,
+        });
+    } catch (error) {
+        console.error('Error fetching roadmap:', error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
 
 exports.getAllRoadmaps = async (req, res) => {
 	try {
