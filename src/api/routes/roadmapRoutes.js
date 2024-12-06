@@ -8,5 +8,6 @@ const router = express.Router();
 router.get('/', verifyFirebaseToken, roadmapController.getAllRoadmaps);
 router.get('/:id', verifyFirebaseToken, roadmapController.getRoadmapById);
 router.post('/', verifyFirebaseToken, roadmapController.postRoadmap);
+router.put('/set', verifyFirebaseToken, roadmapController.setRoadmap);
 
 module.exports = router;

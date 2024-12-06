@@ -1,6 +1,47 @@
 const admin = require("firebase-admin");
 const db = admin.firestore();
 
+exports.setRoadmap = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        const career = req.body.career; // Ensure correct field name
+
+        if (!userId || !career) {
+            return res.status(400).json({ error: 'Missing userId or career' });
+        }
+
+        const userRef = db.collection('users').doc(userId);
+        const roadmapsRef = db.collection('roadmaps');
+
+        // Update user's career
+        await userRef.update({ career });
+
+        // Find matching roadmap
+        const matchingRoadmapSnapshot = await roadmapsRef
+            .where('career', '==', career)
+            .get();
+
+        if (matchingRoadmapSnapshot.empty) {
+            return res.status(404).json({ error: 'No matching roadmap found' });
+        }
+
+        const matchingRoadmap = matchingRoadmapSnapshot.docs[0];
+        const roadmapDict = matchingRoadmap.data();
+
+        const roadmapProgress = (roadmapDict.steps || []).map(step => ({
+            step,
+            isDone: false
+        }));
+
+        await userRef.update({ roadmapProgress });
+        res.status(201).json({ message: 'User Career and Roadmap progress updated successfully' });
+
+    } catch (error) {
+        console.error('Error in setRoadmap:', error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
 exports.postRoadmap = async (req, res) => {
 	try {
 		const { id, career, steps } = req.body;
