@@ -1,3 +1,5 @@
+.env
 node_modules
-credentials.json
+credentials-firebase.json
 credentials-pubsub.json
+credentials-storage.json

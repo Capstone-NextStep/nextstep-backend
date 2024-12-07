@@ -43,25 +43,38 @@ exports.setRoadmap = async (req, res) => {
 };
 
 exports.postRoadmap = async (req, res) => {
-	try {
-		const { id, career, steps } = req.body;
+    try {
+        // Validate that body is an array
+        if (!Array.isArray(req.body)) {
+            return res.status(400).json({ error: 'Request body must be an array' });
+        }
 
-		if (!id || !career || !Array.isArray(steps)) {
-			return res.status(400).json({error: 'Missing or Invalid Fields' });
-		}
+        // Validate each roadmap object
+        for (const roadmap of req.body) {
+            if (!roadmap.id || !roadmap.career || !Array.isArray(roadmap.steps)) {
+                return res.status(400).json({ error: 'Missing or Invalid Fields in one of the roadmaps' });
+            }
+        }
 
-		const newRoadmap = {
-			id,
-			career,
-			steps,
-			createdAt: admin.firestore.FieldValue.serverTimestamp(),
-		};
+        // Add all roadmaps
+        const results = await Promise.all(req.body.map(async (roadmap) => {
+            const newRoadmap = {
+                id: roadmap.id,
+                career: roadmap.career,
+                steps: roadmap.steps,
+                createdAt: admin.firestore.FieldValue.serverTimestamp(),
+            };
+            const docRef = await db.collection('roadmaps').add(newRoadmap);
+            return { id: docRef.id, career: roadmap.career };
+        }));
 
-		const docRef = await db.collection('roadmaps').add(newRoadmap);
-		res.status(201).json({ message: 'Roadmap created successfully', id: docRef.id})
-	} catch (error) {
-		res.status(500).json({ error: error.message });
-	}
+        res.status(201).json({ 
+            message: 'Roadmaps created successfully', 
+            roadmaps: results 
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 };
 
 exports.getRoadmapById = async (req, res) => {
