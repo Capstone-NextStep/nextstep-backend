@@ -3,7 +3,7 @@ const db = admin.firestore();
 
 exports.setRoadmap = async (req, res) => {
     try {
-        const { userId } = req.body;
+        const userId  = req.params.id;
         const career = req.body.career; // Ensure correct field name
 
         if (!userId || !career) {
@@ -44,14 +44,12 @@ exports.setRoadmap = async (req, res) => {
 
 exports.postRoadmap = async (req, res) => {
     try {
-        // Validate that body is an array
         if (!Array.isArray(req.body)) {
             return res.status(400).json({ error: 'Request body must be an array' });
         }
 
-        // Validate each roadmap object
         for (const roadmap of req.body) {
-            if (!roadmap.id || !roadmap.career || !Array.isArray(roadmap.steps)) {
+            if (!roadmap.id || !roadmap.career || !roadmap.overview || !Array.isArray(roadmap.steps)) {
                 return res.status(400).json({ error: 'Missing or Invalid Fields in one of the roadmaps' });
             }
         }
@@ -61,6 +59,7 @@ exports.postRoadmap = async (req, res) => {
             const newRoadmap = {
                 id: roadmap.id,
                 career: roadmap.career,
+                overview: roadmap.overview,
                 steps: roadmap.steps,
                 createdAt: admin.firestore.FieldValue.serverTimestamp(),
             };

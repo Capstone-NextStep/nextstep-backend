@@ -5,7 +5,7 @@ const upload = require('../../middlewares/uploadMiddleware');
 const router = express.Router();
 
 // Protected routes - require authentication
-// router.get('/', verifyFirebaseToken, userDetailController.setDetailProfile);
-router.post('/', verifyFirebaseToken, upload, userDetailController.setDetailProfile);
+router.get('/:id', verifyFirebaseToken, userDetailController.getDetailProfile);
+router.post('/:id', verifyFirebaseToken, upload, userDetailController.setDetailProfile);
 
 module.exports = router;

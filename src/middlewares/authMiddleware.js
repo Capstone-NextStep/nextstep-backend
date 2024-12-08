@@ -12,6 +12,7 @@ const verifyFirebaseToken = async (req, res, next) => {
     req.user = decodedToken; // Add the user info to the request object
     next();
   } catch (error) {
+    console.error("Error verifying token:", error);
     res.status(401).json({ error: "Unauthorized access" });
   }
 };

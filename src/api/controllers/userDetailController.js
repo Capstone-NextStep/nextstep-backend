@@ -10,8 +10,7 @@ const db = admin.firestore();
 
 exports.setDetailProfile = async (req, res) => {
   try {
-    // Get userId from request body
-    const { userId } = req.body;
+    const userId  = req.params.id;
 
     if (!userId) {
       return res.status(400).json({ error: 'userId is required' });
@@ -28,7 +27,7 @@ exports.setDetailProfile = async (req, res) => {
 
     // Create user profile object with data from request and user document
     const userProfile = {
-      name: userData.name, // Use name from user collection
+      name: req.body.name !== undefined ? req.body.name : userData.name, 
       age: req.body.age,
       gender: req.body.gender,
       currentPosition: req.body.currentPosition,
@@ -90,3 +89,18 @@ exports.setDetailProfile = async (req, res) => {
     });
   }
 };
+
+exports.getDetailProfile = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const userDoc = await db.collection('userDetails').doc(userId).get();
+    
+    if (!userDoc.exists) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    res.status(200).json({ user: userDoc.data() });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
