@@ -42,3 +42,7 @@ We published our API documentation, you can view it here <a href="https://docs.g
 
 ## Cloud Architecture 
 <img src="https://cdn.discordapp.com/attachments/1229495124535545978/1315695875829534774/2791f83d-05b7-47ba-8850-e583993aff69.png?ex=675858c5&is=67570745&hm=c4755493b6311c900d2e002305b9b053acd11602eb69c19ccd3072063fba7448&">
+
+## Contributors
+- Muhammad Rayhan Saputra
+- Bryant Firsta Agdinto
