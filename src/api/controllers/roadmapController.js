@@ -86,7 +86,7 @@ exports.getRoadmapById = async (req, res) => {
             return res.status(404).json({ error: 'Roadmap Not Found', id: roadmapId });
         }
 
-        const doc = querySnapshot.docgets[0];
+        const doc = querySnapshot.docs[0];
         const roadmap = doc.data();
 
         res.status(200).json({
