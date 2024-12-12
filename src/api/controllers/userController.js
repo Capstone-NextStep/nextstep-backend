@@ -9,7 +9,12 @@ exports.createUser = async (userId, userData) => {
       career: "No Career",
       email: userData.email,
       name: userData.displayName,
-      roadmapProgress: "Choose Your Career First To Display Roadmap Progress",
+      roadmapProgress: [
+        {
+          step: "Choose Your Career First", 
+          isDone: false
+        }
+      ],
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
     return true;
