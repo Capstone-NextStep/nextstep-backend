@@ -47,13 +47,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// Login User (handled via Firebase Client SDK; not on the server directly)
-exports.login = (req, res) => {
-  res.status(501).json({ 
-    message: "Login should be handled by Firebase Client SDK on the frontend." 
-  });
-};
-
 // Verify Token
 exports.verifyToken = async (req, res) => {
   const { token } = req.body;

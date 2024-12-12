@@ -6,10 +6,10 @@ exports.createUser = async (userId, userData) => {
   try {
     await db.collection('users').doc(userId).set({
       userId: userId,
-      career: "",
+      career: "No Career",
       email: userData.email,
       name: userData.displayName,
-      roadmapProgress: [""],
+      roadmapProgress: "Choose Your Career First To Display Roadmap Progress",
       createdAt: admin.firestore.FieldValue.serverTimestamp()
     });
     return true;
