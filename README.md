@@ -22,27 +22,24 @@ After setting up Firebase, you'll get a Firebase config object with credentials 
 - Under Service Accounts, click Generate New Private Key.
 - Save the downloaded JSON file securely, as it contains sensitive information.
 3. Set Firebase Configuration in .env
-- In your project folder, create or edit the .env file to add Firebase configuration. You will need to set up Firebase credentials, such as your API key, project ID, and service account credentials.
+- In your project folder, navigate to your credentials file path and copy the relative path to `.env` file
+4. Additional addon for backend
+- Provide Cloud Storage Bucket to contains Machine Learning models
+- Create Pub/Sub Topic for both of Machine Learning model deployments
 
 Example `.env`:
-```FIREBASE_API_KEY=your-api-key
-FIREBASE_AUTH_DOMAIN=your-auth-domain
-FIREBASE_PROJECT_ID=your-project-id
-FIREBASE_STORAGE_BUCKET=your-storage-bucket
-FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-FIREBASE_APP_ID=your-app-id
-FIREBASE_PRIVATE_KEY_PATH=./path/to/your/serviceAccountKey.json
+```
+STORAGE_CREDENTIALS=path-to-google-cloud-storage-credentials-file
+PUBSUB_CREDENTIALS=path-to-pubsub-credentials-file
+FIREBASE_CREDENTIALS=path-to-firebase-credentials
+GCS_BUCKET_NAME=name-of-google-storage-bucket
 ```
 ## Build and run project
-`npm run serve`
-Navigate to localhost:8080
+`npm run start`
+Navigate to localhost:5000
 
 ## API Documentation
 We published our API documentation, you can view it here <a href="https://docs.google.com/spreadsheets/d/1BYoo-XEQEeblnRURM9D6arKkrMlwVrhtl_2smJiRXio/edit?gid=0#gid=0">Documentation</a>
 
 ## Cloud Architecture 
-<img src="https://cdn.discordapp.com/attachments/1229495124535545978/1315695875829534774/2791f83d-05b7-47ba-8850-e583993aff69.png?ex=675858c5&is=67570745&hm=c4755493b6311c900d2e002305b9b053acd11602eb69c19ccd3072063fba7448&">
-
-## Contributors
-- Muhammad Rayhan Saputra
-- Bryant Firsta Agdinto
+<img src="https://photos.app.goo.gl/vxWx9TLBEEzsoQTn8">
