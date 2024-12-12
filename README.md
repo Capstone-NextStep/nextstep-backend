@@ -12,20 +12,20 @@ Before proceeding, ensure you have the following installed and set up:
 Before you start the setup, you'll need to configure Firebase to work with your project:
 
 1. Set up Firebase Project
-- Go to the <a href="https://console.firebase.google.com">Firebase Console</a>
-- Create a new project if you haven’t done so already.
-- Set up Firebase Firestore or Realtime Database, depending on your project requirements.
-- Set up Firebase Authentication (if needed).
+	- Go to the <a href="https://console.firebase.google.com">Firebase Console</a>
+	- Create a new project if you haven’t done so already.
+	- Set up Firebase Firestore or Realtime Database, depending on your project requirements.
+	- Set up Firebase Authentication (if needed).
 After setting up Firebase, you'll get a Firebase config object with credentials such as API Key, Project ID, etc.
 2. Create a Firebase Service Account Key
-- Go to the Project Settings in the Firebase console.
-- Under Service Accounts, click Generate New Private Key.
-- Save the downloaded JSON file securely, as it contains sensitive information.
+	- Go to the Project Settings in the Firebase console.
+	- Under Service Accounts, click Generate New Private Key.
+	- Save the downloaded JSON file securely, as it contains sensitive information.
 3. Set Firebase Configuration in .env
-- In your project folder, navigate to your credentials file path and copy the relative path to `.env` file
+	- In your project folder, navigate to your credentials file path and copy the relative path to `.env` file
 4. Additional addon for backend
-- Provide Cloud Storage Bucket to contains Machine Learning models
-- Create Pub/Sub Topic for both of Machine Learning model deployments
+	- Provide Cloud Storage Bucket to contains Machine Learning models
+	- Create Pub/Sub Topic for both of Machine Learning model deployments
 
 Example `.env`:
 ```
@@ -42,4 +42,4 @@ Navigate to localhost:5000
 We published our API documentation, you can view it here <a href="https://docs.google.com/spreadsheets/d/1BYoo-XEQEeblnRURM9D6arKkrMlwVrhtl_2smJiRXio/edit?gid=0#gid=0">Documentation</a>
 
 ## Cloud Architecture 
-<img src="https://photos.fife.usercontent.google.com/pw/AP1GczMjVBTux437dkIHQvhEMEWqNcOhSOxzowzVG43Am01vuYLijc0uUqLB9g=w960-h540-s-no-gm?authuser=0">
+<img src="https://github.com/Capstone-NextStep/.github/blob/main/profile/assets/nextstep-cloud-architecture.png">
