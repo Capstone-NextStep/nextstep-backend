@@ -42,4 +42,4 @@ Navigate to localhost:5000
 We published our API documentation, you can view it here <a href="https://docs.google.com/spreadsheets/d/1BYoo-XEQEeblnRURM9D6arKkrMlwVrhtl_2smJiRXio/edit?gid=0#gid=0">Documentation</a>
 
 ## Cloud Architecture 
-<img src="https://photos.app.goo.gl/vxWx9TLBEEzsoQTn8">
+<img src="https://photos.fife.usercontent.google.com/pw/AP1GczMjVBTux437dkIHQvhEMEWqNcOhSOxzowzVG43Am01vuYLijc0uUqLB9g=w960-h540-s-no-gm?authuser=0">
